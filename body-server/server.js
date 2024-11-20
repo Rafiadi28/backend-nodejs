@@ -2,12 +2,21 @@
     
     const requestListener = (request, response) => {
         response.setHeader('Content-Type', 'text/html');
-    
         response.statusCode = 200;
-        response.end('<h1>Halo HTTP Server!</h1>');
-    };
     
+        const { method } = request;
     
+        if(method === 'POST') {
+            let body = '';
+            request.on('data', (chunk) => {
+                body += chunk;
+            });
+            request.on('end', () => {
+                const parsedBody = JSON.parse(body);
+                response.end(`Hai, ${parsedBody.name}!`);
+            });
+        }
+    }
     const server = http.createServer(requestListener);
     
     const port = 5000;
