@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@hapi/hapi": "^21.3.12",
     "lodash": "^4.17.21",
     "moment": "^2.30.1"
   }
